@@ -12,9 +12,6 @@ Raymond Gee
 
 <br>
 
-## Project Faculty Advisor
-TDB
-
 ## Planter's Guide
 
 ### Main Points of Interest
@@ -33,6 +30,3 @@ Potentially, we would like to add the following:
 
 More ideas may come up as we work on the project, and the image processing idea specifically will most likely be the most time consuming if we pursue it. We will update
 this as the project progresses.
- 
-## Github
-https://github.com/buttscm/Planters_Guide/

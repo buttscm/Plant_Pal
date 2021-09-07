@@ -1,13 +1,13 @@
 # Team *B.E.G*
 
 ## Team Members
-Chris Butts
+Chris Butts (CS)
 - E-mail: buttscm@mail.uc.edu
 
-Kevin Eaton
+Kevin Eaton (CS)
 * E-mail: eatonko@mail.uc.edu
 
-Raymond Gee
+Raymond Gee (CS)
 * E-mail: geern@mail.uc.edu
 
 <br>

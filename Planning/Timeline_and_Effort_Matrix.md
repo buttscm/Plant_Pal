@@ -39,7 +39,7 @@
 | Develop android app to raspberry pi method | Chris | 60% | 35% | 5% |
 | Develop skeleton of app | Chris | 90% | 5% | 5% |
 | Develop components that interact with raspberry pi | Chris | 70% | 20% | 10% |
-| Develop SQL output on raspberry pi to app method | Chris | 60% | 25% | 5% |
+| Develop SQL output on raspberry pi to app method | Chris | 60% | 25% | 15% |
 | Develop method to send watering signal to raspberry pi | Kevin | 40% | 60% | 0% |
 | Develop automated watering mechanism | Kevin | 10% | 10% | 80% |
 | Develop notificaitons | Chris | 100% | 0% | 0% |

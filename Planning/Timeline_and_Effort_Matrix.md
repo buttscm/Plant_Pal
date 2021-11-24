@@ -18,9 +18,9 @@
 | SQL | Develop SQL database security measures | 3/1/2022 - 3/15/2022 | 3/15/2022 |
 | Transfer | Develop method to send auto-water signal to Raspberry Pi| 3/1/2022 - 3/15/2022 | 3/15/2022 |
 | Automation | Develop auto-watering mechanism | 3/1/2022 - 4/1/2022 | 4/1/2022 |
-| Automation | Ensure auto-watering mechanism doesn't overwater | 4/1/2022 - 4/7/2022 | 4/7/2022
 | App | Develop notificaitons | 3/10/2022 - 3/17/2022 | 3/17/2022 |
 | App | Create app UI | 3/15/2022 - 4/1/2022 | 4/1/2022 |
+| Automation | Ensure auto-watering mechanism doesn't overwater | 4/1/2022 - 4/7/2022 | 4/7/2022
 | Milestone | Transfer Functionality | 1/10/2022 - 2/28/2022 | 2/28/2022 |
 | Milestone | SQL Database | 12/11/2021 - 3/15/2022 | 3/15/2022 |
 | Milestone | Android applicaiton | 2/1/2022 - 4/1/2022 | 4/1/2022 |

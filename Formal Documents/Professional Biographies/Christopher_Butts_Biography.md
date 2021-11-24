@@ -27,12 +27,3 @@
  * Operating Systems: Windows, Mac
  * Database: SQL, XML
  * Miscalaneous: Office Suite, Photoshop
- 
-<br>
-
-## Project Concept
-
-* Either a PC or mobile application that communicates with a backend database full of plant information
-* Using image processing to determine plant species based on photo uploaded by user
-* Creating a mechanism that can automatically water a plant when moisture level gets too low
-

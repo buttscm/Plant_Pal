@@ -1,9 +1,8 @@
 
 # Christopher Butts
 ## Contact Information
-* University e-mail: buttscm@mail.uc.edu
-* Personal e-mail: chrisbutts087@gmail.com
-* Cellphone #: 614-530-0414
+* University email: buttscm@mail.uc.edu
+* Phone number: 614-530-0414
 
 <br>
 

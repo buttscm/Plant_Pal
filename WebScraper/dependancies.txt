@@ -1,0 +1,8 @@
+To run the webscraper, you need
+- selenium (pip install selenium)
+- Firefox installed on your pc (if not, you can look in the tutorial on how to get the drivers set up)
+    - https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
+- webdriver manager (pip install webdriver-manager)
+
+
+

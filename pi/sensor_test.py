@@ -9,9 +9,12 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 import time
 import RPi.GPIO as GPIO
+from gpiozero import OutputDevice
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
-
+class Relay(OutputDevice):
+    def __init__(self, pin, active_high):
+        super(Relay, self).__init__(pin, active_high)
 
 def TestAnalogInputs():
     #Setup for SPI analog to digital converter
@@ -43,9 +46,25 @@ def TestAnalogInputs():
         
         time.sleep(1)
 
+def TestPump(DataPin):
+    #testing the pump, runs on and off
+    #GPIO.setmode(GPIO.BCM)
+    #GPIO.setup(DataPin, GPIO.OUT)
+    RELAY = Relay(16, False)
+    
+    print('Testing Pump. Ctrl-C to exit.')
+    time.sleep(3)
+    while True:
+        print('Pump On!')
+        RELAY.on()
+        time.sleep(3)
+        print('Pump Off!')
+        RELAY.off()
+        time.sleep(3)
 
 def main():    
-    TestAnalogInputs()
+    #TestAnalogInputs()
+    TestPump(16)
 
 if(__name__ == "__main__"):
     main()

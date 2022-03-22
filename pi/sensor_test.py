@@ -15,7 +15,7 @@ from adafruit_mcp3xxx.analog_in import AnalogIn
 class Relay(OutputDevice):
     def __init__(self, pin, active_high):
         super(Relay, self).__init__(pin, active_high)
-
+    
 def TestAnalogInputs():
     #Setup for SPI analog to digital converter
     spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -34,10 +34,10 @@ def TestAnalogInputs():
     print("Testing Sunlight and Moisture Sensor values (ctrl c to stop)")
     time.sleep(3)
     
-    while True:  
-        print('Raw Sunlight ADC Value (P0): ', sunlight.value)
+    for i in range(10):
+        #print('Raw Sunlight ADC Value (P0): ', sunlight.value)
         print('Sunlight Voltage: ' + str(round(sunlight.voltage, 2)) + 'V\n')
-        print('Raw Moisture ADC Value (P1): ', moisture.value)
+        #print('Raw Moisture ADC Value (P1): ', moisture.value)
         print('Moisture Voltage: ' + str(round(moisture.voltage, 2)) + 'V\n\n')
         #if channel.voltage > 2.0:
             #GPIO.output(DataPin, True)
@@ -52,19 +52,24 @@ def TestPump(DataPin):
     #GPIO.setup(DataPin, GPIO.OUT)
     RELAY = Relay(16, False)
     
-    print('Testing Pump. Ctrl-C to exit.')
+    print('Testing Pump.')
     time.sleep(3)
-    while True:
-        print('Pump On!')
-        RELAY.on()
-        time.sleep(3)
-        print('Pump Off!')
-        RELAY.off()
-        time.sleep(3)
+    
+    print('Pump On!')
+    RELAY.on()
+    time.sleep(3)
+    print('Pump Off!')
+    RELAY.off()
+    time.sleep(3)
 
 def main():    
-    #TestAnalogInputs()
+    TestAnalogInputs()
+    print('\n\n\n')
+    
     TestPump(16)
+    
+    print('Test Concluded. If anything did not work properly, please consult wiring manual.')
+    
 
 if(__name__ == "__main__"):
     main()

@@ -12,6 +12,9 @@ import RPi.GPIO as GPIO
 from gpiozero import OutputDevice
 from adafruit_mcp3xxx.analog_in import AnalogIn
 
+import setup
+import pickle
+
 class Relay(OutputDevice):
     def __init__(self, pin, active_high):
         super(Relay, self).__init__(pin, active_high)
@@ -61,14 +64,61 @@ def TestPump(DataPin):
     print('Pump Off!')
     RELAY.off()
     time.sleep(3)
+    
 
-def main():    
-    TestAnalogInputs()
-    print('\n\n\n')
+#MYSQL TESTS
+
+import mysql.connector
+
+hostname = "DESKTOP-BB8P6HI"
+username = "tmp"
+password = "tmp"
+database = "plant"
+port = "3306"
+
+def doQuery (conn):
+    cur = conn.cursor()
     
-    TestPump(16)
+    sql = "INSERT INTO log (WaterResevoirState, SunlightStatus, CurrentSunlight, CurrentWater) VALUES (%s, %s, %s, %s)"
+    vals = ('Deez nuts', 'Good', 0.5, 0.5)
+    cur.execute(sql, vals)
+    conn.commit()
+    #for name in cur.fetchall():
+        #print(name)
+        
+def doSelect(conn):
+    cur = conn.cursor()
     
-    print('Test Concluded. If anything did not work properly, please consult wiring manual.')
+    sql = "SELECT * FROM usersetting LIMIT 1"
+    cur.execute(sql)
+    
+    for record in cur.fetchall():
+        plant = record[1]
+        moisture_threshold = record[2]
+        sunlight_threshold = record[3]
+        auto_water = record[4]
+        print(record)
+
+def main():
+    s1 = setup.Sensor("sunlight")
+    setup.config(s1)
+    #save it
+    s1.pickle()
+    data = Sensor.unpickle()
+        
+    print(s1.min)
+    print(data.min)
+    #print("Testing connector")
+    #myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
+    #doQuery(myConnection)
+    #myConnection.close()
+    
+    #TestAnalogInputs()
+    #print('\n\n\n')
+    
+    #TestPump(16)
+    
+    #print('Test Concluded. If anything did not work properly, please consult wiring manual.')
     
 
 if(__name__ == "__main__"):

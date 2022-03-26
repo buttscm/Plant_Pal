@@ -23,8 +23,10 @@ def GetSensor(sensorName):
     
     if(sensorName == "sunlight"):
         return AnalogIn(mcp, MCP.P0)
-    else:
+    elif(sensorName == "moisture"):
         return AnalogIn(mcp, MCP.P1)
+    else:
+        return AnalogIn(mcp, MCP.P2)
 
 class Sensor:
     def __init__(self, sensorName):
@@ -33,15 +35,13 @@ class Sensor:
         self.val = 0
         self.name = sensorName
         self.sensor = GetSensor(sensorName)
-        self.threshold = 0.3
-    
+
     def get_reading(self):
         #Get reading as a percentage of max and min
         #divide by the min reading - max reading
         #1 - answer gets percentage from of sunlight on plant
         
         self.val = round(1 - (self.sensor.value - self.max)/(self.min - self.max), 2)
-
 
 def config(sensor):
     print("Configuring " + sensor.name + " Sensor. \n")
@@ -58,10 +58,10 @@ def config(sensor):
         input("Please make sure sensor is completely dry. \nPress enter when ready.\n")
         
     total = 0
-    for i in range(200):
+    for i in range(500):
         total += sensor.sensor.value
         
-    sensor.min = int(total/200)
+    sensor.min = int(total/500)
     
     if(sensor.name == 'sunlight'):
         input("\nPlease use a light source directly on the sunlight sensor.\nPress when ready.\n")
@@ -69,15 +69,20 @@ def config(sensor):
         input("Please submerge sensor in water fully up until electronic components.\nPress enter when ready.\n")        
     
     total = 0
-    for i in range(200):
+    for i in range(500):
         total += sensor.sensor.value
         
-    sensor.max = int(total/200)
+    sensor.max = int(total/500)
     
     print("Completed " + sensor.name + " Sensor Config!\n\n")
     
     #IMPORTANT: max and min will be opposite, max and min just mean max and min light/moisture valus
     
-
-
-        
+def updateResevoir(val):
+    
+    if(val > 0.2):
+        return ("Full")
+    elif(val > 0.05):
+        return("Warning")
+    else:
+        return("Empty")

@@ -13,4 +13,10 @@ Second: getting the software running
 - use his exact setup and plugging in the 
 - sunlight sensor analog output should work.
 
+CONFIG
+- the .config file in this directory will allow you to config the db info
+- ip, username, pwd, database, port
+- all in text, \n char after each to properly parse
+
+
 

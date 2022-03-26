@@ -2,12 +2,20 @@
 # Kevin Eaton
 
 class UserSettings:
-    def __init__(self, settingsArr):
+    def __init__(self):
+        self.plant = 0
+        self.moisture_threshold = 0
+        self.sunlight_threshold = 0
+        self.auto_water = 0
+        self.do_fetch = 0
+        
+    
+    def updateSettings(self, settingsArr):
         self.plant = settingsArr[1]
         self.moisture_threshold = settingsArr[2]
         self.sunlight_threshold = settingsArr[3]
         self.auto_water = settingsArr[4]
-        
+        self.do_fetch = settingsArr[5]     
 
 
 def logInsert (conn, toSend):
@@ -22,20 +30,31 @@ def logInsert (conn, toSend):
 def logSelect(conn):
     cur = conn.cursor()
     
-    sql = "SELECT * FROM log"
+    sql = "SELECT * FROM log LIMIT 10"
     cur.execute(sql)
     
     for record in cur.fetchall():
         print(record)
+
 def settingSelect(conn):
     cur = conn.cursor()
     
     sql = "SELECT * FROM usersetting LIMIT 1"
     cur.execute(sql)
     
-    for record in cur.fetchall():
-        plant = record[1]
-        moisture_threshold = record[2]
-        sunlight_threshold = record[3]
-        auto_water = record[4]
-        print(record)
+    
+    return(cur.fetchall()[0])
+
+def settingUpdate(conn):
+    cur = conn.cursor()
+    sql = "UPDATE usersetting SET ForceLog = 0 WHERE 1"
+    
+    cur.execute(sql)
+    conn.commit()
+    
+def settingTest(conn):
+    cur = conn.cursor()
+    sql = "UPDATE usersetting SET ForceLog = 1 WHERE 1"
+    
+    cur.execute(sql)
+    conn.commit()

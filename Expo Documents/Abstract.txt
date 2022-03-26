@@ -1,0 +1,1 @@
+In our increasingly busy world, it’s hard to remember or have time to take care of your house plants. The Plant Pal aims to solve that problem. By automatically detecting the amount of sunlight your plant has, watering it for you, and sending you info about the plant right to your phone, taking care of your house plant has never been easier for busy and forgetful plant owners.

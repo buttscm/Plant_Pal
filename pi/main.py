@@ -62,6 +62,7 @@ def main():
     currResevoir = "Full"
     
     
+    print("Starting Auto Monitoring Plant Device!!!\n\n")
     ###MAIN LOOP###
     while True:
         time.sleep(5)
@@ -78,8 +79,9 @@ def main():
         
         ##EVERY 5 SECONDS
             #grab user settings, check if a fetch now request has been made and send a log if so
-        
         settings.updateSettings(db.settingSelect(myConnection))
+        
+        print("Current Reading:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight) +  '\t\tResevoir: ' + str(currResevoir) +  "\n")
         if(settings.do_fetch == 1):
             
             db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
@@ -91,16 +93,16 @@ def main():
         ##EVERY MINUTE
             #send a log
             #count to 20 from 5 second sleep
-        if(minute_count >= 2):
+        if(minute_count >= 12):
             
             db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
-            print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight) + "\n")
+            print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight) +  '\t\tResevoir: ' + str(currResevoir) +  "\n")
             db.logSelect(myConnection)
             #reset minute_count
             minute_count = 0
         
         #Wait 5 seconds, do it again
-        if(currMoisture < settings.moisture_threshold):
+        if(currMoisture < settings.moisture_threshold and currResevoir != 'Empty' and settings.auto_water == 1):
             #Turn the watering on for 5 seconds
             pump.on()
             time.sleep(5)

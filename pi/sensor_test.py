@@ -100,14 +100,7 @@ def doSelect(conn):
         print(record)
 
 def main():
-    s1 = setup.Sensor("sunlight")
-    setup.config(s1)
-    #save it
-    s1.pickle()
-    data = Sensor.unpickle()
-        
-    print(s1.min)
-    print(data.min)
+    TestAnalogInputs()
     #print("Testing connector")
     #myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
     #doQuery(myConnection)

@@ -30,7 +30,7 @@ def logInsert (conn, toSend):
 def logSelect(conn):
     cur = conn.cursor()
     
-    sql = "SELECT * FROM log LIMIT 10"
+    sql = "SELECT * FROM log ORDER BY time DESC LIMIT 5"
     cur.execute(sql)
     
     for record in cur.fetchall():

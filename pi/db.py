@@ -4,9 +4,9 @@
 class UserSettings:
     def __init__(self):
         self.plant = 0
-        self.moisture_threshold = 0
-        self.sunlight_threshold = 0
-        self.auto_water = 0
+        self.moisture_threshold = 0.5
+        self.sunlight_threshold = 0.5
+        self.auto_water = 1
         self.do_fetch = 0
         
     

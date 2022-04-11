@@ -27,6 +27,7 @@ def TestAnalogInputs():
     #P0 first channel, P1 next, so on
     sunlight = AnalogIn(mcp, MCP.P0)
     moisture = AnalogIn(mcp, MCP.P1)
+    res = AnalogIn(mcp, MCP.P2)
     
     #Setup GPIO
     #GPIO.setmode(GPIO.BCM)
@@ -37,11 +38,14 @@ def TestAnalogInputs():
     print("Testing Sunlight and Moisture Sensor values (ctrl c to stop)")
     time.sleep(3)
     
-    for i in range(10):
+    while True:
         #print('Raw Sunlight ADC Value (P0): ', sunlight.value)
-        print('Sunlight Voltage: ' + str(round(sunlight.voltage, 2)) + 'V\n')
+        print('Sunlight Voltage: ' + str(round(sunlight.value, 2)) + 'V\n')
         #print('Raw Moisture ADC Value (P1): ', moisture.value)
-        print('Moisture Voltage: ' + str(round(moisture.voltage, 2)) + 'V\n\n')
+        print('Moisture Voltage: ' + str(round(moisture.value, 2)) + 'V\n\n')
+        
+        
+        print('Resevoir Voltage: ' + str(round(res.value, 2)) + 'V\n\n')
         #if channel.voltage > 2.0:
             #GPIO.output(DataPin, True)
         #else:

@@ -50,8 +50,13 @@ def main():
         database = lines_split[3]
         port = lines_split[4]
     
-    myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
-    
+    try:
+        myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
+        
+        
+    except:
+        print("Connection failed, continuing water using default settings.\n\n")
+        
     #User Settings
     settings = db.UserSettings()
     
@@ -60,6 +65,8 @@ def main():
     currMoisture = 0
     currSunlight = 0
     currResevoir = "Full"
+    not_sent = []
+    not_sent_num = 20
     
     
     print("Starting Auto Monitoring Plant Device!!!\n\n")
@@ -79,14 +86,33 @@ def main():
         
         ##EVERY 5 SECONDS
             #grab user settings, check if a fetch now request has been made and send a log if so
-        settings.updateSettings(db.settingSelect(myConnection))
+        
+        try:
+            settings.updateSettings(db.settingSelect(myConnection))
+        except:
+            print("Failed Connection to db.\n")
         
         print("Current Reading:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight) +  '\t\tResevoir: ' + str(currResevoir) +  "\n")
         if(settings.do_fetch == 1):
             
-            db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
-            print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight))
-            db.settingUpdate(myConnection)
+            try:
+                #send log to db successfully
+                myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
+                for item in not_sent:
+                    db.logInsert(myConnection, item)
+                
+                db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
+                print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight))
+                db.settingUpdate(myConnection)
+            except:
+                #no connection means it just backs up
+                if(len(not_sent) >= not_sent_num):
+                    not_sent.pop(0)
+                not_sent.append([currResevoir, "temp light state", currSunlight, currMoisture])
+                print("LOG BACKUP (only " + not_sent_num + " spots)\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight))
+                
+                #REMOVE
+                print(not_sent)
             #reset minute_count
             minute_count = 0
         
@@ -94,10 +120,24 @@ def main():
             #send a log
             #count to 20 from 5 second sleep
         if(minute_count >= 12):
-            
-            db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
-            print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight) +  '\t\tResevoir: ' + str(currResevoir) +  "\n")
-            db.logSelect(myConnection)
+            try:
+                #send log to db successfully
+                myConnection = mysql.connector.connect(host = hostname, user = username, passwd=password, db=database, port=port)
+                for item in not_sent:
+                    db.logInsert(myConnection, item)
+                
+                db.logInsert(myConnection,  [currResevoir, "temp light state", currSunlight, currMoisture])
+                print("LOG SENT:\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight))
+                db.settingUpdate(myConnection)
+            except:
+                #no connection means it just backs up
+                if(len(not_sent) >= 20):
+                    not_sent.pop(0)
+                not_sent.append([currResevoir, "temp light state", currSunlight, currMoisture])
+                print("LOG BACKUP (only x spots)\n" + 'Moisture: ' + str(currMoisture) + '\t\tSunlight: ' + str(currSunlight))
+                
+                #REMOVE
+                print(not_sent)
             #reset minute_count
             minute_count = 0
         

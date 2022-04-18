@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Plant Pal</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="plant_species">Change Species</string>
+    <string name="previous">Previous</string>
+    <string name="percent_sign">%</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="moisture_label">Moisture</string>
+    <string name="sunlight_label">Sunlight</string>
+
+    <string name="auto_watering_label">Allow Automatic Watering</string>
+    <string name="manual_moisture_label">Moisture Threshold</string>
+    <string name="manual_sunlight_label">Sunlight Threshold</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="update">Request Data</string>
+
+    <string name="plant_list_view">tmp</string>
+    <string name="plant_filter"></string>
+
+    <string name="moisture">N/A</string>
+    <string name="sunlight">N/A</string>
+
+    <string name="plant_name_label">Plant Name:</string>
+    <string name="moisture_threshold_label">Current moisture threshold:</string>
+    <string name="sunlight_threshold_label">Current sunlight threshold:</string>
+
+    <string name="moisture_threshold">0</string>
+    <string name="sunlight_threshold">0</string>
+
+    <string name="preset_low">Low</string>
+    <string name="preset_moisture_medium">Medium</string>
+    <string name="preset_moisture_high">High</string>
+    <string name="reset_sunlight_partial">Partial</string>
+    <string name="preset_sunlight_full">Full</string>
+</resources>
